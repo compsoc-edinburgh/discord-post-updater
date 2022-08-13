@@ -114,10 +114,10 @@ async def post_or_update():
                 style=getattr(discord.ButtonStyle, button_tag.attrib.get("style", "secondary"), discord.ButtonStyle.secondary),
                 custom_id=button_tag.attrib.get("id", None),
                 url=button_tag.attrib.get("url", None),
-                disabled=button_tag.attrib.get("disabled", None),
+                disabled=button_tag.attrib.get("disabled", None) == "true",
                 label=getattr(button_tag.find("./label"), "text", ""),
                 emoji=getattr(button_tag.find("./emoji"), "text", ""),
-                row=button_tag.attrib.get("row", 0)
+                row=int(button_tag.attrib.get("row", 0))
             )
             message_args["view"].add_item(button)
 
