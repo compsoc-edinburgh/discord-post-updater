@@ -7,10 +7,12 @@ RUN curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VE
 # Add poetry install location to PATH
 ENV PATH=/root/.local/bin:$PATH
 
+RUN poetry config virtualenvs.create false
 COPY poetry.lock pyproject.toml ./
-RUN poetry config virtualenvs.in-project true --local
-RUN poetry install --no-dev
+RUN poetry install --no-root --no-dev
 
-COPY post_updater.py /post_updater.py
+COPY post_updater.py /bin/post_updater.py
 
-CMD ["poetry", "run", "python", "/post_updater.py"]
+RUN chmod +x /bin/post_updater.py
+
+CMD ["post_updater.py"]
