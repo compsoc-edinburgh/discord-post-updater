@@ -7,8 +7,6 @@ RUN curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VE
 # Add poetry install location to PATH
 ENV PATH=/root/.local/bin:$PATH
 
-WORKDIR /github/workspace
-
 COPY poetry.lock pyproject.toml ./
 RUN poetry config virtualenvs.in-project true --local
 RUN poetry install --no-dev
