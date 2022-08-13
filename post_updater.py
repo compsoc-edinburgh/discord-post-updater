@@ -56,17 +56,17 @@ async def post_or_update():
     # Read either the raw markdown or the XML, but not both.
     post_file_path = get_actions_environ("POST_FILE", None)
     post_xml_path = get_actions_environ("POST_XML", None)
-    if post_file_path is None and post_xml_path is None:
+    if not post_file_path and not post_xml_path:
         print("Neither POST_FILE nor POST_XML was supplied to the action.")
         sys.exit(1)
 
-    if post_file_path is not None and post_xml_path is not None:
+    if post_file_path and post_xml_path:
         print("Both POST_FILE and POST_XML was supplied: use one only.")
         sys.exit(1)
 
     # Construcct the arguments to pass to channel.send()
     message_args = {}
-    if post_file_path is not None:
+    if post_file_path:
         # If we're using raw markdown
         with open(post_file_path) as post_file:
             post = post_file.read()
