@@ -11,6 +11,6 @@ COPY poetry.lock pyproject.toml ./
 RUN poetry config virtualenvs.in-project true --local
 RUN poetry install --no-dev
 
-COPY post_updater.py ./post_updater.py
+COPY post_updater.py /post_updater.py
 
-CMD ["poetry", "run", "python", "post_updater.py"]
+CMD ["poetry", "run", "python", "/post_updater.py"]
