@@ -132,7 +132,10 @@ async def post_or_update():
 @client.event
 async def on_ready():
     print(f"Logged in as {client.user}")
-    await post_or_update()
+    try:
+        await post_or_update()
+    except Exception:
+        sys.exit(1)
     await client.close()
 
 
