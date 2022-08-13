@@ -116,7 +116,7 @@ async def post_or_update():
                 url=button_tag.attrib.get("url", None),
                 disabled=button_tag.attrib.get("disabled", None) == "true",
                 label=getattr(button_tag.find("./label"), "text", ""),
-                emoji=getattr(button_tag.find("./emoji"), "text", ""),
+                emoji=getattr(button_tag.find("./emoji"), "text", None),
                 row=int(button_tag.attrib.get("row", 0))
             )
             message_args["view"].add_item(button)
