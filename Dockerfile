@@ -9,7 +9,7 @@ ENV PATH=/root/.local/bin:$PATH
 
 RUN poetry config virtualenvs.create false
 COPY poetry.lock pyproject.toml ./
-RUN poetry install --no-root --no-dev
+RUN poetry install --no-root --only main
 
 COPY post_updater.py /bin/post_updater.py
 
